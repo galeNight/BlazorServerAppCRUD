@@ -1,0 +1,74 @@
+﻿@page "/UserList"
+@using BlazorServerAppCRUD.Models;
+@using BlazorServerAppCRUD.Services;
+@inject IUserServices UserServies
+@inject NavigationManager NavigationManager
+
+<PageTitle>UserList</PageTitle>
+
+<h1>UserList</h1>
+<button class=" btn btn-primary" @onclick="NavigateToAddUser"> Add New USer</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User id</th>
+            <th>Frist Name</th>
+            <th>Last Name</th>
+            <th>Email Address</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>Password2</th>
+            <th>CreateDate</th>
+            <th>DeleteDate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var std in userlist)
+        {
+            <tr>
+                <td>@std.Id</td>
+                <td>@std.FirstName</td>
+                <td>@std.LastName</td>
+                <td>@std.Email</td>
+                <td>@std.Password</td>
+                <td>@std.Password2</td>
+                <td>@std.CreateDate</td>
+                <td>@std.DeleteDate</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+@code{
+    protected List<UserEntity> userlist = new();
+    protected override async Task OnInitializedAsync()
+    {
+        GetUserList();
+    }
+    protected List<UserEntity> GetUserList()
+    {
+        var res = UserServies.GetAllUsers();
+        userlist = res.ToList();
+        return userlist;
+    }
+    protected void DeleteUser(int Id)
+    {
+        UserServies.DeleteUser(Id);
+        StateHasChanged();
+        GetUserList();
+    }
+    protected void UpdateUser(int UserID)
+    {
+        string pageURL = $"/UpdateUser/{UserID.ToString()}";
+        
+    }
+    protected void NavigateToAddUser()
+    {
+        string pageURL = $"/AddUser";
+        NavigationManager.NavigateTo(pageURL);
+    }
+}
