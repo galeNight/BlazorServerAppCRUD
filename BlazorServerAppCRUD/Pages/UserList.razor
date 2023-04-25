@@ -28,13 +28,15 @@
         {
             <tr>
                 <td>@std.Id</td>
-                <td>@std.FirstName</td>
+                <td>@std.FirstName</td>w
                 <td>@std.LastName</td>
                 <td>@std.Email</td>
                 <td>@std.Password</td>
                 <td>@std.Password2</td>
                 <td>@std.CreateDate</td>
                 <td>@std.DeleteDate</td>
+                <td><button type="button" @onclick="(() => DeleteUser(std.Id))" class="btn btn-danger">Delete</button></td>
+                <td><button type="button" @onclick="(() =>UpdateUser(std.Id))" class="btn btn-primary">Edit</button></td>
             </tr>
         }
     </tbody>
