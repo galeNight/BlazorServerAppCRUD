@@ -28,15 +28,16 @@
         {
             <tr>
                 <td>@std.Id</td>
-                <td>@std.FirstName</td>w
+                <td>@std.FirstName</td>
                 <td>@std.LastName</td>
                 <td>@std.Email</td>
+                <td>@std.Login</td>
                 <td>@std.Password</td>
                 <td>@std.Password2</td>
                 <td>@std.CreateDate</td>
                 <td>@std.DeleteDate</td>
                 <td><button type="button" @onclick="(() => DeleteUser(std.Id))" class="btn btn-danger">Delete</button></td>
-                <td><button type="button" @onclick="(() =>UpdateUser(std.Id))" class="btn btn-primary">Edit</button></td>
+                <td><button type="button" @onclick="(() => NavigateToUpDate(std.Id))" class="btn btn-primary">Edit</button></td>
             </tr>
         }
     </tbody>
@@ -46,6 +47,7 @@
 
 
 @code{
+    private void NavigateToUpDate(int UserID) => NavigationManager.NavigateTo($"/UpdateUser/{UserID.ToString()}");
     protected List<UserEntity> userlist = new();
     protected override async Task OnInitializedAsync()
     {
@@ -63,11 +65,11 @@
         StateHasChanged();
         GetUserList();
     }
-    protected void UpdateUser(int UserID)
-    {
-        string pageURL = $"/UpdateUser/{UserID.ToString()}";
+    //protected void UpdateUser(int UserID)
+    //{
+    //    string pageURL = $"/UpdateUser/{UserID.ToString()}";
         
-    }
+    //}
     protected void NavigateToAddUser()
     {
         string pageURL = $"/AddUser";

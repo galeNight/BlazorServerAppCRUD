@@ -9,7 +9,7 @@
 
 <h1>Add New User</h1>
 
-<EditForm>
+<EditForm Model="@User" OnValidSubmit="SaveUser">
     <DataAnnotationsValidator/>
     <div class="mb-3">.
         <label for="FirstName" class="form-label">First Name</label>
@@ -68,11 +68,11 @@
         {
             return;
         }
-         UserServices.AddUser(User);
+        UserServices.AddUser(User);
         NavigationManager.NavigateTo("/UserList");
     }
     protected void Cancel()
     {
-        
+        NavigationManager.NavigateTo("/");
     }
 }

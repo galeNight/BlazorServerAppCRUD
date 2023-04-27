@@ -1,9 +1,15 @@
 ﻿@page "/"
-
+@inject NavigationManager NavigationManager
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>vælg hvor du vil hend</h1>
 
-Welcome to your new app.
+<div >
+    <button type="button" class="btn btn-success" @onclick=" () => NavigateToUSerList()">Til UserList</button>
+    <button type="button" class="btn btn-outline-dark" @onclick="() => NavigateToAddUser() ">Til AddUser</button>
+</div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code{
+    private void NavigateToUSerList() => NavigationManager.NavigateTo("/UserList");
+    private void NavigateToAddUser() => NavigationManager.NavigateTo("/AddUser");
+}

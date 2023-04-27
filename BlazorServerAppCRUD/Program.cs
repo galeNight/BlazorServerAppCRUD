@@ -11,6 +11,9 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<IStudentServices, StudentServices>();
 builder.Services.AddTransient<IStudentRepository, StudentRepository>();
 
+builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

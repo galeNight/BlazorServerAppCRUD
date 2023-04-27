@@ -72,8 +72,8 @@ namespace BlazorServerAppCRUD.Repositories
                     user.Login = rdr["Login"].ToString();
                     user.Password = rdr["Password"].ToString();
                     user.Password2 = rdr["Password2"].ToString();
-                    user.CreateDate = Convert.ToDateTime(rdr["CreateDate"].ToString());
-                    user.DeleteDate = Convert.ToDateTime(rdr["DeleteDate"].ToString());
+                    user.CreateDate = rdr["CreateDate"] == DBNull.Value ? (DateTime?) null : (DateTime)rdr["CreateDate"];
+                    user.DeleteDate = rdr["DeleteDate"] == DBNull.Value ? (DateTime?) null : (DateTime)rdr["DeleteDate"];
 
                     lstStudent.Add(user);
                 }
