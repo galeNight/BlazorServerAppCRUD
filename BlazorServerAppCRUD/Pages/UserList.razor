@@ -7,7 +7,8 @@
 <PageTitle>UserList</PageTitle>
 
 <h1>UserList</h1>
-<button class=" btn btn-primary" @onclick="NavigateToAddUser"> Add New USer</button>
+<button class=" btn btn-primary" @onclick="NavigateToAddUser"> Add New User</button>
+<button class="btn btn-primary" @onclick="NavigateToHomePgae">Til Homepage</button>
 
 <table class="table">
     <thead>
@@ -47,6 +48,7 @@
 
 
 @code{
+    private void NavigateToHomePgae() => NavigationManager.NavigateTo("/");
     private void NavigateToUpDate(int UserID) => NavigationManager.NavigateTo($"/UpdateUser/{UserID.ToString()}");
     protected List<UserEntity> userlist = new();
     protected override async Task OnInitializedAsync()
@@ -68,7 +70,6 @@
     //protected void UpdateUser(int UserID)
     //{
     //    string pageURL = $"/UpdateUser/{UserID.ToString()}";
-        
     //}
     protected void NavigateToAddUser()
     {
