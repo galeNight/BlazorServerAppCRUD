@@ -9,7 +9,7 @@
 <h1>UserList</h1>
 <button class=" btn btn-primary" @onclick="NavigateToAddUser"> Add New User</button>
 <button class="btn btn-primary" @onclick="NavigateToHomePgae">Til Homepage</button>
-
+<input class="mb-3" @oninput="Search" placeholder="Search..."/>
 <table class="table">
     <thead>
         <tr>
@@ -75,5 +75,9 @@
     {
         string pageURL = $"/AddUser";
         NavigationManager.NavigateTo(pageURL);
+    }
+    protected void Search()
+    {
+        
     }
 }
